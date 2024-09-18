@@ -2,7 +2,9 @@
 <h1>React Roguelike</h1>
 
 <p>A roguelike game built with React and TypeScript.</p>
-<p><a href="https://react-roguelike-demo.netlify.app">https://react-roguelike-demo.netlify.app</a><p/>
+<p>Demo: <a href="https://react-roguelike-demo.netlify.app">https://react-roguelike-demo.netlify.app</a><p/>
+
+<p>See alo: <a href="https://react-roguelike-demo.netlify.app/pcg">level editor</a></p>
 </div>
 
 [![CircleCI](https://circleci.com/gh/TimAstier/react-roguelike.svg?style=svg)](https://circleci.com/gh/TimAstier/react-roguelike) [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
@@ -13,7 +15,7 @@
 
 Go to https://react-roguelike-demo.netlify.app to start a new game.
 
-The level editor is available [here](https://react-roguelike-demo.netlify.app).
+The level editor is available [here](https://react-roguelike-demo.netlify.app/pcg).
 
 ## Built with
 
