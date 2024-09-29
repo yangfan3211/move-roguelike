@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { CELL_WIDTH_IN_PIXELS } from '../../constants/config';
@@ -61,6 +61,18 @@ interface Props {
 }
 
 export const Toolbar: React.FC<Props> = (props) => {
+  const location = useLocation();
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const seedFromUrl = searchParams.get('seed');
+    if (seedFromUrl) {
+      const trimmedSeed = seedFromUrl.replace(/^0x/, '');
+      props.setSeed(trimmedSeed);
+      props.load();
+    }
+  }, [location.search, props.setSeed, props.load]);
+
   return (
     <Wrapper>
       <div style={{ height: '80%', overflowY: 'scroll' }}>
@@ -120,12 +132,20 @@ export const Toolbar: React.FC<Props> = (props) => {
         </CellWrapper>
       </div>
       <div style={{ height: '20%' }}>
-        <p>----</p>
-        <Link to="/">PLAY</Link>
+        <Link to="/play">PLAY</Link>
+        <br></br>
+        <button style={{ marginTop: 15 }} onClick={props.load}>
+          Mint as NFT
+        </button>
+        <br />
+        <button style={{ marginTop: 15 }} onClick={props.load}>
+          See NFTs Gallery
+        </button>
         <input
           style={{ marginTop: 15 }}
           value={props.seed}
-          onChange={(event) => props.setSeed(event.target.value)}
+          onChange={(event) => props.setSeed(event.target.value.replace(/^0x/, ''))}
+          placeholder="Enter seed or use URL param"
         />
         <button style={{ marginTop: 15 }} onClick={props.load}>
           Load from seed

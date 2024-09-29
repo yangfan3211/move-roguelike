@@ -6,8 +6,8 @@ import crit from '../../assets/sounds/crit.wav';
 import goblinAttack from '../../assets/sounds/goblin_attack.wav';
 import goblinDeath from '../../assets/sounds/goblin_death.wav';
 import goblinPain from '../../assets/sounds/goblin_pain.wav';
-import lootBigGold from '../../assets/sounds/lootBigGold.ogg';
-import lootSmallGold from '../../assets/sounds/lootSmallGold.ogg';
+import lootManyCoins from '../../assets/sounds/lootBigGold.ogg';
+import lootCoins from '../../assets/sounds/lootSmallGold.ogg';
 import miss from '../../assets/sounds/miss.wav';
 import ratAttack from '../../assets/sounds/rat_attack.ogg';
 import ratDeath from '../../assets/sounds/rat_death.ogg';
@@ -19,8 +19,8 @@ export const SOUNDS = {
   crit,
   attack,
   miss,
-  lootSmallGold,
-  lootBigGold,
+  lootCoins,
+  lootManyCoins,
   stairs,
   ratAttack,
   ratPain,
@@ -41,8 +41,8 @@ export const useSoundsManager = ({ sounds, round }: Options): void => {
   const [playCrit] = useSound(crit);
   const [playAttack] = useSound(attack, { volume: 3 });
   const [playMiss] = useSound(miss, { volume: 0.6 });
-  const [playLootSmallGold] = useSound(lootSmallGold);
-  const [playLootBigGold] = useSound(lootBigGold);
+  const [playLootCoins] = useSound(lootCoins);
+  const [playLootManyCoins] = useSound(lootManyCoins);
   const [playStairs] = useSound(stairs);
   const [playRatAttack] = useSound(ratAttack, { volume: 0.3 });
   const [playRatPain] = useSound(ratPain, { volume: 0.3 });
@@ -51,12 +51,12 @@ export const useSoundsManager = ({ sounds, round }: Options): void => {
   const [playGoblinPain] = useSound(goblinPain, { volume: 0.3 });
   const [playGoblinDeath] = useSound(goblinDeath, { volume: 0.3 });
 
-  const soundPlayer: { [key: string]: typeof playLootSmallGold } = {
+  const soundPlayer: { [key: string]: typeof playLootCoins } = {
     crit: playCrit,
     attack: playAttack,
     miss: playMiss,
-    lootSmallGold: playLootSmallGold,
-    lootBigGold: playLootBigGold,
+    lootCoins: playLootCoins,
+    lootManyCoins: playLootManyCoins,
     stairs: playStairs,
     ratAttack: playRatAttack,
     ratPain: playRatPain,

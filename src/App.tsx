@@ -69,15 +69,15 @@ export const App: React.FC = () => {
       <Router>
         <Switch>
           <Route exact path="/">
+            <MapGenerator state={state} dispatch={dispatch} />
+          </Route>
+          <Route exact path="/play">
             <Game
               state={state}
               dispatch={dispatch}
               withBackgroundMusic={withBackgroundMusic}
               setWithBackgroundMusic={setWithBackgroundMusic}
             />
-          </Route>
-          <Route exact path="/pcg">
-            <MapGenerator state={state} dispatch={dispatch} />
           </Route>
         </Switch>
       </Router>

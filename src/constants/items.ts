@@ -1,7 +1,7 @@
 import roguelikeitems from '../assets/images/roguelikeitems.png';
 import { Position } from '../typings/position';
 
-export type ItemType = 'Sword' | 'Ruby' | 'Key' | 'SmallGold' | 'BigGold';
+export type ItemType = 'Sword' | 'Ruby' | 'Key' | 'Coins' | 'ManyCoins';
 
 interface Item {
   type: ItemType;
@@ -32,16 +32,16 @@ export const ITEMS: Item[] = [
     nameInSentence: 'a key',
   },
   {
-    type: 'SmallGold',
+    type: 'Coins',
     spritePosition: [8, 3],
     imageSrc: roguelikeitems,
-    nameInSentence: 'some gold',
+    nameInSentence: 'small coins',
   },
   {
-    type: 'BigGold',
+    type: 'ManyCoins',
     spritePosition: [7, 3],
     imageSrc: roguelikeitems,
-    nameInSentence: 'a lot of gold',
+    nameInSentence: 'a lot of coins',
   },
 ];
 

@@ -183,7 +183,7 @@ const generateMap = (rng: () => number): TileType[][] => {
 };
 
 const getGoldSize = (rng: () => number) => {
-  return rng() > 0.5 ? 'BigGold' : 'SmallGold';
+  return rng() > 0.5 ? 'ManyCoins' : 'Coins';
 };
 
 const pickCreatureType = (rng: () => number): CreatureType => (rng() > 0.5 ? 'goblin' : 'rat'); // TODO
@@ -242,7 +242,7 @@ export const createGameMap = (
   for (let j = 0; j < height; j += 1) {
     gameMap[j] = [];
     for (let i = 0; i < width; i += 1) {
-      let content: 0 | 'SmallGold' | 'BigGold' = 0;
+      let content: 0 | 'Coins' | 'ManyCoins' = 0;
       let creature = undefined;
       if (rng) {
         content = goldPositions.includes(String([i, j])) ? getGoldSize(rng) : 0;

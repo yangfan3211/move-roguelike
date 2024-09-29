@@ -14,22 +14,22 @@ export const lootItem = (draft: GameState, position: Position): void => {
   if (content && content !== 'Player') {
     const item = getItem(content);
     if (item) {
-      if (item.type === 'SmallGold') {
+      if (item.type === 'Coins') {
         const amount = getRandomIntInclusive(
           SMALL_GOLD_AMOUNT - SMALL_GOLD_MODIFIER,
           SMALL_GOLD_AMOUNT + SMALL_GOLD_MODIFIER
         );
         draft.gold = draft.gold + amount;
         draft.eventLogs.push(`You found ${amount} gold.`);
-        draft.sounds.push('lootSmallGold');
-      } else if (item.type === 'BigGold') {
+        draft.sounds.push('lootCoins');
+      } else if (item.type === 'ManyCoins') {
         const amount = getRandomIntInclusive(
           BIG_GOLD_AMOUNT - BIG_GOLD_MODIFIER,
           BIG_GOLD_AMOUNT + BIG_GOLD_MODIFIER
         );
         draft.gold = draft.gold + amount;
         draft.eventLogs.push(`You found ${amount} gold!`);
-        draft.sounds.push('lootBigGold');
+        draft.sounds.push('lootManyCoins');
       } else {
         draft.inventory.push(content);
         draft.eventLogs.push(`You found ${item.nameInSentence}.`);

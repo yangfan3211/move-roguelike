@@ -357,10 +357,10 @@ describe('game reducer', () => {
       expect(newStateB.inventory).toEqual(['Ruby']);
       expect(newStateB.currentMap[1][1].content).toEqual(0);
     });
-    it('loots SmallGold', () => {
+    it('loots Coins', () => {
       const currentMap = gameMapA.map((arr) => arr.slice());
       currentMap[1][1] = {
-        content: 'SmallGold',
+        content: 'Coins',
         tile: '.',
         revealed: true,
         visibility: 'clear',
@@ -377,10 +377,10 @@ describe('game reducer', () => {
       expect(newStateB.currentMap[1][1].content).toEqual(0);
       expect(newStateB.gold).toBeGreaterThanOrEqual(SMALL_GOLD_AMOUNT - SMALL_GOLD_MODIFIER);
     });
-    it('loots BigGold', () => {
+    it('loots ManyCoins', () => {
       const currentMap = gameMapA.map((arr) => arr.slice());
       currentMap[1][1] = {
-        content: 'BigGold',
+        content: 'ManyCoins',
         tile: '.',
         revealed: true,
         visibility: 'clear',
