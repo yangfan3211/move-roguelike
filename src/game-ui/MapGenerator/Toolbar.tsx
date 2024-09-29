@@ -9,6 +9,7 @@ import { TILES, TileType } from '../../constants/tiles';
 import { CellContent } from '../../typings/cell';
 import { Effect } from '../../typings/effect';
 import { Cell, CellProps } from './Cell';
+import { NFT_OPERATOR_URL } from '../../constants/config';
 
 const Wrapper = styled.div`
   background-color: grey;
@@ -134,7 +135,13 @@ export const Toolbar: React.FC<Props> = (props) => {
       <div style={{ height: '20%' }}>
         <Link to="/play">PLAY</Link>
         <br></br>
-        <button style={{ marginTop: 15 }} onClick={props.load}>
+        <button 
+          style={{ marginTop: 15 }} 
+          onClick={() => {
+            const url = `${NFT_OPERATOR_URL}?seed=0x${props.seed}`;
+            window.open(url, '_blank');
+          }}
+        >
           Mint as NFT
         </button>
         <br />
