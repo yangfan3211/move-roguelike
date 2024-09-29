@@ -2,10 +2,13 @@
   "name": "react-roguelike",
   "version": "0.2.0",
   "private": false,
-  "description": "A roguelike game built with React and TypeScript.",
-  "repository": "https://github.com/TimAstier/react-roguelike",
-  "author": "Timothée Astier <timotheee.astier@essec.edu>",
+  "description": "A roguelike game for Move Game Kit.",
+  "repository": "https://github.com/NonceGeek/move-roguelike",
+  "author": "LeeDuckGo <leeduckgo@gmail.com>",
   "license": "MIT",
+  "engines": {
+    "node": "^12.16.3"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
