@@ -2,14 +2,13 @@ import React, { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { CELL_WIDTH_IN_PIXELS } from '../../constants/config';
+import { CELL_WIDTH_IN_PIXELS, NFT_OPERATOR_URL } from '../../constants/config';
 import { CREATURES, CreatureType } from '../../constants/creatures';
 import { ITEMS } from '../../constants/items';
 import { TILES, TileType } from '../../constants/tiles';
 import { CellContent } from '../../typings/cell';
 import { Effect } from '../../typings/effect';
 import { Cell, CellProps } from './Cell';
-import { NFT_OPERATOR_URL } from '../../constants/config';
 
 const Wrapper = styled.div`
   background-color: grey;
@@ -134,11 +133,11 @@ export const Toolbar: React.FC<Props> = (props) => {
       </div>
       <div style={{ height: '20%' }}>
         <Link to="/play">PLAY</Link>
-        <br></br>
-        <button 
-          style={{ marginTop: 15 }} 
+        <br />
+        <button
+          style={{ marginTop: 15 }}
           onClick={() => {
-            const url = `${NFT_OPERATOR_URL}?seed=0x${props.seed}`;
+            const url = `${NFT_OPERATOR_URL}?seed=${props.seed}`;
             window.open(url, '_blank');
           }}
         >

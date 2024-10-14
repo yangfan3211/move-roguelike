@@ -68,10 +68,10 @@ export const App: React.FC = () => {
     <Wrapper>
       <Router>
         <Switch>
-          <Route exact path="/">
+          <Route exact path="/map-editor">
             <MapGenerator state={state} dispatch={dispatch} />
           </Route>
-          <Route exact path="/play">
+          <Route exact path="/">
             <Game
               state={state}
               dispatch={dispatch}

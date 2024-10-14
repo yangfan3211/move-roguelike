@@ -46,7 +46,7 @@ const renderCells = (
 ) => {
   const cellsToSideX = Math.floor(NUMBER_OF_CELLS_IN_VIEWPORT_X / 2);
   const cellsToSideY = Math.floor(NUMBER_OF_CELLS_IN_VIEWPORT_Y / 2);
-
+  // Hint: Render cells here.
   // We only render the cells that are visible in the viewport
   return gameMap
     .filter(

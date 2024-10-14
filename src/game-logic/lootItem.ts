@@ -13,6 +13,8 @@ export const lootItem = (draft: GameState, position: Position): void => {
   const content = draft.currentMap[position[1]][position[0]].content;
   if (content && content !== 'Player') {
     const item = getItem(content);
+    // Hint: interact with the item.
+    console.log('get item');
     if (item) {
       if (item.type === 'Coins') {
         const amount = getRandomIntInclusive(

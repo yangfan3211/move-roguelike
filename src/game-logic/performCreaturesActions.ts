@@ -10,7 +10,9 @@ import { line } from '../utils/line';
 import { GameState } from './game';
 
 const attackPlayer = (draft: GameState, template: Creature) => {
+  // Hint: interact with the Creatures.
   // Check if the attack hits
+  console.log('hit create');
   const hitRoll = new DiceRoll('d20');
   if (hitRoll.total < PLAYER_BASE_AC) {
     draft.eventLogs.push(`The ${template.type} misses you.`);
