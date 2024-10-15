@@ -2,7 +2,7 @@ import './App.css';
 
 import { HowlOptions } from 'howler';
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 import { useImmerReducer } from 'use-immer';
 import useSound from 'use-sound';
