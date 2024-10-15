@@ -2,7 +2,7 @@ import './App.css';
 
 import { HowlOptions } from 'howler';
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 import { useImmerReducer } from 'use-immer';
 import useSound from 'use-sound';
@@ -29,6 +29,7 @@ const Wrapper = styled.div`
 export const App: React.FC = () => {
   const [state, dispatch] = useImmerReducer(game, INITIAL_STATE);
   const [play, { stop, sound }] = useSound<HowlOptions>(crystalCaveSong, {
+    src: crystalCaveSong,
     loop: true,
     volume: 0.1,
   });
@@ -52,7 +53,9 @@ export const App: React.FC = () => {
 
   React.useEffect(() => {
     if (state.gameStatus === 'gameover') {
-      sound.fade(0.1, 0, GAMEOVER_FADEOUT_DURATION);
+      if (sound) {
+        sound.fade(0.1, 0, GAMEOVER_FADEOUT_DURATION);
+      }
       if (withBackgroundMusic) {
         const timer = setTimeout(() => {
           playGameover();
