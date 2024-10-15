@@ -19,10 +19,14 @@ interface Props {
 
 const renderActionLabel = (playerAction: PlayerAction) => {
   let hasColoredLetter = false;
-  return playerAction.type.split('').map((char) => {
+  return playerAction.type.split('').map((char, index) => {
     if (char === playerAction.gameKey && !hasColoredLetter) {
       hasColoredLetter = true;
-      return <span style={{ color: 'yellow' }}>{char}</span>;
+      return (
+        <span key={index} style={{ color: 'yellow' }}>
+          {char}
+        </span>
+      );
     }
     return char;
   });
