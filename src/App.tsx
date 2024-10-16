@@ -26,10 +26,14 @@ const Wrapper = styled.div`
   font-family: UglyTerminal;
 `;
 
-export const App: React.FC = () => {
+interface AppContentProps {
+  customMusicUrl: string | null;
+}
+
+const AppContent: React.FC<AppContentProps> = ({ customMusicUrl }) => {
   const [state, dispatch] = useImmerReducer(game, INITIAL_STATE);
-  const [play, { stop, sound }] = useSound<HowlOptions>(crystalCaveSong, {
-    src: crystalCaveSong,
+  const [play, { stop, sound }] = useSound<HowlOptions>(customMusicUrl || crystalCaveSong, {
+    src: customMusicUrl || crystalCaveSong,
     loop: true,
     volume: 0.1,
   });
@@ -83,6 +87,23 @@ export const App: React.FC = () => {
             />
           </Route>
         </Switch>
+      </Router>
+    </Wrapper>
+  );
+};
+
+export const App: React.FC = () => {
+  const [customMusicUrl, setCustomMusicUrl] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    setCustomMusicUrl(searchParams.get('music'));
+  }, []);
+
+  return (
+    <Wrapper>
+      <Router>
+        <AppContent customMusicUrl={customMusicUrl} />
       </Router>
     </Wrapper>
   );
