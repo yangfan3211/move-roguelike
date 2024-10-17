@@ -2,7 +2,7 @@ import './App.css';
 
 import { HowlOptions } from 'howler';
 import React from 'react';
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch,useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { useImmerReducer } from 'use-immer';
 import useSound from 'use-sound';
@@ -16,6 +16,7 @@ import { Game } from './game-ui/Game';
 import { useDetectUserInput } from './game-ui/hooks/useDetectUserInput';
 import { MapGenerator } from './game-ui/MapGenerator';
 
+
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -28,20 +29,28 @@ const Wrapper = styled.div`
 
 export const App: React.FC = () => {
   const [state, dispatch] = useImmerReducer(game, INITIAL_STATE);
-  const [play, { stop, sound }] = useSound<HowlOptions>(crystalCaveSong, {
-    src: crystalCaveSong,
+  const [bgmUrl, setBgmUrl] = React.useState(crystalCaveSong);
+  const [play, { stop, sound }] = useSound<HowlOptions>(bgmUrl, {
+    src: bgmUrl,
     loop: true,
     volume: 0.1,
   });
   const [playGameover] = useSound(gameoverSong, { volume: 0.6 });
   const didUserInput = useDetectUserInput();
   const [withBackgroundMusic, setWithBackgroundMusic] = React.useState(PLAY_MUSIC_AT_START);
-
+  const [searchParams] = useSearchParams();
+  const bgmUrlParam = searchParams.get('bgm');
   React.useEffect(() => {
     if (didUserInput && withBackgroundMusic) {
       play();
     }
   }, [didUserInput]);
+
+  React.useEffect(() => {
+    if (bgmUrlParam.includes('https://')) {
+      setBgmUrl(bgmUrlParam);
+    }
+  }, [bgmUrlParam]);
 
   React.useEffect(() => {
     if (withBackgroundMusic === false) {
