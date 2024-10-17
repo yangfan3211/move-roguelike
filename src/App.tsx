@@ -49,6 +49,8 @@ export const App: React.FC = () => {
   React.useEffect(() => {
     if (bgmUrlParam.includes('https://')) {
       setBgmUrl(bgmUrlParam);
+    } else {
+      setBgmUrl(crystalCaveSong);
     }
   }, [bgmUrlParam]);
 
