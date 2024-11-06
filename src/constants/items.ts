@@ -1,7 +1,7 @@
 import roguelikeitems from '../assets/images/roguelikeitems.png';
 import { Position } from '../typings/position';
 
-export type ItemType = 'Sword' | 'Ruby' | 'Key' | 'Coins' | 'ManyCoins';
+export type ItemType = 'Sword' | 'Ruby' | 'Key' | 'BTCs' | 'ManyBTCs' | 'Rooch';
 
 interface Item {
   type: ItemType;
@@ -32,16 +32,23 @@ export const ITEMS: Item[] = [
     nameInSentence: 'a key',
   },
   {
-    type: 'Coins',
+    type: 'BTCs',
     spritePosition: [8, 3],
     imageSrc: roguelikeitems,
-    nameInSentence: 'small coins',
+    nameInSentence: 'small BitBTCs',
   },
   {
-    type: 'ManyCoins',
+    type: 'ManyBTCs',
     spritePosition: [7, 3],
     imageSrc: roguelikeitems,
-    nameInSentence: 'a lot of coins',
+    nameInSentence: 'a lot of BitBTCs',
+  },
+  // Hint: Clever way to get the position in the sprite.
+  {
+    type: 'Rooch',
+    spritePosition: [6, 12],
+    imageSrc: roguelikeitems,
+    nameInSentence: 'unique Rooch in a map',
   },
 ];
 

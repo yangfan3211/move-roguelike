@@ -42,6 +42,9 @@ export const PLAYER_BASE_AC = 13;
 export const MIN_GOLD_SPAWN_NUMBER = 3;
 export const MAX_GOLD_SPAWN_NUMBER = 10;
 
+export const MIN_ROOCH_SPAWN_NUMBER = 1;
+export const MAX_ROOCH_SPAWN_NUMBER = 1;
+
 export const MIN_HORDES_NUMBER = 5;
 export const MAX_HORDES_NUMBER = 10;
 

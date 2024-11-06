@@ -6,8 +6,10 @@ import {
   GRID_WIDTH,
   MAX_GOLD_SPAWN_NUMBER,
   MAX_HORDES_NUMBER,
+  MAX_ROOCH_SPAWN_NUMBER,
   MIN_GOLD_SPAWN_NUMBER,
   MIN_HORDES_NUMBER,
+  MIN_ROOCH_SPAWN_NUMBER,
 } from '../constants/config';
 import { CREATURES, CreatureType } from '../constants/creatures';
 import { TileType } from '../constants/tiles';
@@ -183,7 +185,7 @@ const generateMap = (rng: () => number): TileType[][] => {
 };
 
 const getGoldSize = (rng: () => number) => {
-  return rng() > 0.5 ? 'ManyCoins' : 'Coins';
+  return rng() > 0.5 ? 'ManyBTCs' : 'BTCs';
 };
 
 const pickCreatureType = (rng: () => number): CreatureType => (rng() > 0.5 ? 'goblin' : 'rat'); // TODO
@@ -193,6 +195,7 @@ interface SpawnPosition {
   creatureType: CreatureType;
 }
 
+// HINT: createGameMap here.
 export const createGameMap = (
   map: TileType[][],
   spawn: Position,
@@ -203,7 +206,16 @@ export const createGameMap = (
   const candidatePositions = findGroundPositions(map);
   const shuffledCandidatePositions = shuffleArray(candidatePositions, rng) as Position[];
 
+  const roochSpawnNumber = getRandomIntInclusive(
+    MIN_ROOCH_SPAWN_NUMBER,
+    MAX_ROOCH_SPAWN_NUMBER,
+    rng
+  );
   const goldSpawnNumber = getRandomIntInclusive(MIN_GOLD_SPAWN_NUMBER, MAX_GOLD_SPAWN_NUMBER, rng);
+
+  const roochPositions = shuffledCandidatePositions
+    .splice(0, roochSpawnNumber)
+    .map((p) => String(p));
   const goldPositions = shuffledCandidatePositions.splice(0, goldSpawnNumber).map((p) => String(p));
 
   const hordesNumber = getRandomIntInclusive(MIN_HORDES_NUMBER, MAX_HORDES_NUMBER, rng);
@@ -242,10 +254,14 @@ export const createGameMap = (
   for (let j = 0; j < height; j += 1) {
     gameMap[j] = [];
     for (let i = 0; i < width; i += 1) {
-      let content: 0 | 'Coins' | 'ManyCoins' = 0;
+      let content: 0 | 'BTCs' | 'ManyBTCs' | 'Rooch' = 0;
       let creature = undefined;
       if (rng) {
-        content = goldPositions.includes(String([i, j])) ? getGoldSize(rng) : 0;
+        if (goldPositions.includes(String([i, j]))) {
+          content = getGoldSize(rng);
+        } else if (roochPositions.includes(String([i, j]))) {
+          content = 'Rooch';
+        }
         const spawnType = spawnPositions
           .map((p) => ({ position: String(p.position), creatureType: p.creatureType }))
           .find((p) => p.position === String([i, j]));

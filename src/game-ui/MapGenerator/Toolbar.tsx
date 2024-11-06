@@ -132,7 +132,7 @@ export const Toolbar: React.FC<Props> = (props) => {
         </CellWrapper>
       </div>
       <div style={{ height: '20%' }}>
-        <Link to="/play">PLAY</Link>
+        <Link to="/">PLAY</Link>
         <br />
         <button
           style={{ marginTop: 15 }}
