@@ -284,9 +284,10 @@ export const createGameMap = (
   return gameMap;
 };
 
-export const generateLevel = (rng: () => number): Level => {
+export const generateLevel = (rng: () => number, ifGhost: boolean): Level => {
   const map = generateMap(rng);
-
+  // eslint-disable-next-line no-console
+  console.log('ifGhost', ifGhost);
   // Find playerSpawn
   const candidatesSpawn = findCellsInArea({ area: fullMap, map, cellTile: '.' });
   const spawn = candidatesSpawn[Math.floor(rng() * candidatesSpawn.length)];

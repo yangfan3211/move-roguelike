@@ -33,10 +33,15 @@ interface AppContentProps {
   customMusicUrl: string | null;
 }
 
-const AppContent: React.FC<AppContentProps> = ({ customMusicUrl }) => {
-  const [state, dispatch] = useImmerReducer(game, INITIAL_STATE);
+const AppContent: React.FC<AppContentProps> = () => {
   const searchParams = new URLSearchParams(window.location.search);
   const bgmUrlParam = searchParams.get('music');
+  const ifGhostParam = searchParams.get('ifGhost');
+  const [state, dispatch] = useImmerReducer(game, {
+    ...INITIAL_STATE,
+    ifGhost: ifGhostParam === 'true',
+  });
+
   let bgmUrl = crystalCaveSong;
   if (bgmUrlParam === 'https://arweave.net/jfW4fN0DbEAKNSMek_CbXxbmcCfC2qk5ZY_kLPgYklA') {
     bgmUrl = kla;
@@ -83,6 +88,7 @@ const AppContent: React.FC<AppContentProps> = ({ customMusicUrl }) => {
     }
   }, [state.gameStatus, withBackgroundMusic]);
 
+  // HINT: state -> Game -> generateLevel -> ifGhost
   return (
     <Wrapper>
       <Router>

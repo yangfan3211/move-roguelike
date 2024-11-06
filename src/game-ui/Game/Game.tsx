@@ -75,7 +75,7 @@ export const Game: React.FC<Props> = (props) => {
       ? props.state.seed.concat(String(props.state.depth))
       : getRandomString();
     const rng = seedrandom(seed);
-    const level = generateLevel(rng);
+    const level = generateLevel(rng, props.state.ifGhost);
     props.dispatch(gameActions.setSeed(seed));
     // NOTE: Maybe generate level should also init the initial state?
     props.dispatch(gameActions.setCurrentMap(level.gameMap));

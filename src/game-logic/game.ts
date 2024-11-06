@@ -132,6 +132,7 @@ export interface GameState {
   sounds: (keyof typeof SOUNDS)[];
   waitStreak: number;
   playerActions: string[];
+  ifGhost: boolean;
 }
 
 export const INITIAL_STATE: GameState = {
@@ -161,6 +162,7 @@ export const INITIAL_STATE: GameState = {
   sounds: [],
   waitStreak: 0,
   playerActions: ['wait'],
+  ifGhost: false,
 };
 
 // REDUCER

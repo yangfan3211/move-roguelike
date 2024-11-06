@@ -35,9 +35,14 @@ export const MapGenerator: React.FC<Props> = (props) => {
   const [selectedEffect, setSelectedEffect] = React.useState<Effect | null>(null);
   const [currentSeed, setCurrentSeed] = React.useState('');
 
+  const searchParams = new URLSearchParams(window.location.search);
+  const ifGhost = searchParams.get('ifGhost') === 'true';
+  // eslint-disable-next-line no-console
+  console.log('ifGhost * 2', ifGhost);
+
   const load = (seed: string) => {
     const rng = seedrandom(seed);
-    const level = generateLevel(rng);
+    const level = generateLevel(rng, ifGhost);
     props.dispatch(gameActions.setSeed(seed));
     props.dispatch(gameActions.setCurrentMap(level.gameMap));
     props.dispatch(gameActions.initPlayerSpawn(level.playerSpawn));
