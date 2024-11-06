@@ -36,7 +36,8 @@ export const MapGenerator: React.FC<Props> = (props) => {
   const [currentSeed, setCurrentSeed] = React.useState('');
 
   const searchParams = new URLSearchParams(window.location.search);
-  const ifGhost = searchParams.get('ifGhost') === 'true';
+  let ifGhost = searchParams.get('ifGhost') === 'true';
+  ifGhost = true;
   // eslint-disable-next-line no-console
   console.log('ifGhost * 2', ifGhost);
 

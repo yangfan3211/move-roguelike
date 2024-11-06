@@ -2,7 +2,7 @@ import roguelikecreatures from '../assets/images/roguelikecreatures.png';
 import { ActiveConditions } from '../typings/activeConditions';
 import { Position } from '../typings/position';
 
-export type CreatureType = 'goblin' | 'rat';
+export type CreatureType = 'goblin' | 'rat' | 'ghost';
 
 export type Trait = 'keenSmell';
 
@@ -55,5 +55,16 @@ export const CREATURES: { [C in CreatureType]: Creature } = {
     aggroRange: 10,
     spawnNumber: 5,
     traits: ['keenSmell'],
+  },
+  ghost: {
+    type: 'ghost',
+    maxHp: 15,
+    spritePosition: [0, 7],
+    imageSrc: roguelikecreatures,
+    baseAttack: '1d8+5',
+    baseAC: 8,
+    aggroRange: 6,
+    spawnNumber: 2,
+    traits: [],
   },
 };

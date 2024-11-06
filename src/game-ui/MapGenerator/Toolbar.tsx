@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -62,10 +62,17 @@ interface Props {
 
 export const Toolbar: React.FC<Props> = (props) => {
   const location = useLocation();
+  const [ifGhost, setIfGhost] = useState(false);
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const seedFromUrl = searchParams.get('seed');
+
+    const ifGhostParam = searchParams.get('ifGhost');
+    setIfGhost(ifGhostParam === 'true');
+    // DO NOT DELETE
+    // eslint-disable-next-line no-console
+    console.log('ifGhost * 3 ', ifGhost);
     if (seedFromUrl) {
       const trimmedSeed = seedFromUrl.replace(/^0x/, '');
       props.setSeed(trimmedSeed);
@@ -110,19 +117,21 @@ export const Toolbar: React.FC<Props> = (props) => {
           );
         })}
         <p>Creatures</p>
-        {Object.keys(CREATURES).map((creature) => {
-          const type = creature as CreatureType;
-          return (
-            <CellWrapper
-              key={type}
-              selected={props.selectedCreature === type}
-              onClick={() => props.handleSelectedCreature(type)}
-            >
-              <Cell {...defaultCellProps} tileType={'.'} creature={type} />
-              <Label>{type}</Label>
-            </CellWrapper>
-          );
-        })}
+        {Object.keys(CREATURES)
+          .filter((creature) => ifGhost || creature !== 'ghost')
+          .map((creature) => {
+            const type = creature as CreatureType;
+            return (
+              <CellWrapper
+                key={type}
+                selected={props.selectedCreature === type}
+                onClick={() => props.handleSelectedCreature(type)}
+              >
+                <Cell {...defaultCellProps} tileType={'.'} creature={type} />
+                <Label>{type}</Label>
+              </CellWrapper>
+            );
+          })}
         <p>Effects</p>
         <CellWrapper
           selected={props.selectedEffect === 'burn'}

@@ -37,7 +37,7 @@ interface Options {
 
 export const useSoundsManager = ({ sounds, round }: Options): void => {
   const didUserInput = useDetectUserInput();
-
+  // eslint-disable-next-line no-console
   const [playCrit] = useSound(crit);
   const [playAttack] = useSound(attack, { volume: 3 });
   const [playMiss] = useSound(miss, { volume: 0.6 });
@@ -64,6 +64,11 @@ export const useSoundsManager = ({ sounds, round }: Options): void => {
     goblinAttack: playGoblinAttack,
     goblinPain: playGoblinPain,
     goblinDeath: playGoblinDeath,
+
+    // TODO: Add ghost sounds
+    ghostAttack: playGoblinAttack,
+    ghostPain: playGoblinAttack,
+    ghostDeath: playGoblinAttack,
   };
 
   React.useEffect(() => {
